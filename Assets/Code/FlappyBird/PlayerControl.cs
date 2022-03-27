@@ -47,7 +47,7 @@ public class PlayerControl : MonoBehaviour
     {
         if (collision.gameObject.tag == "Death")
         {
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene("FlappyBird");
         }
     }
 }
