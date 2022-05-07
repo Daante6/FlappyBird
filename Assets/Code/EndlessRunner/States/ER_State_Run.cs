@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class ER_State_Run : ER_Istate
 {
-    private ER_StateMachine stateMachine;
-    private Rigidbody2D rb;
-    private BoxCollider2D boxCollider;
     private float mSpeed = 5f;
     private ER_Player player;
     public ER_State_Run(ER_Player player)
@@ -15,13 +12,14 @@ public class ER_State_Run : ER_Istate
     }
     public void Enter()
     {
-        Debug.Log("RUN!");
         player.ChangeVelocity(mSpeed);
+
+        player.appearance.ChangeImage(StateEnum.Run);
     }
 
     public void Execute()
     {
-        inputHandler();
+        InputHandler();
     }
 
     public void Exit()
@@ -29,7 +27,7 @@ public class ER_State_Run : ER_Istate
         
     }
 
-    private void inputHandler()
+    private void InputHandler()
     {
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
@@ -38,6 +36,10 @@ public class ER_State_Run : ER_Istate
         else if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             player.stateMachine.ChangeState(new ER_State_Jump(player));
+        }
+        else if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            player.stateMachine.ChangeState(new ER_State_TigerJump(player));
         }
     }
 }

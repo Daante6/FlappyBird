@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ER_State_Slide : ER_Istate
+public class ER_State_TigerJump : ER_Istate
 {
     ER_Player player;
     float mSpeed = 4.5f;
     float lifeSpan = 1.2f;
-    public ER_State_Slide(ER_Player player)
+    public ER_State_TigerJump(ER_Player player)
     {
         this.player = player;
     }
@@ -17,7 +17,7 @@ public class ER_State_Slide : ER_Istate
         player.capsuleCollider.size = new Vector2(0.5f, 0.5f);
 
         player.ChangeVelocity(mSpeed);
-        player.appearance.ChangeImage(StateEnum.Slide);
+        player.appearance.ChangeImage(StateEnum.TigerJump);
     }
 
     public void Execute()
