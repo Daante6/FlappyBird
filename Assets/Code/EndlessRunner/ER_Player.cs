@@ -15,7 +15,7 @@ public class ER_Player : MonoBehaviour
     private float fallMultiplier = 2.5f;
     private float fallMultiplierLow = 2f;
     public bool isGrounded = true;
-    public List<GameObject> LevelSectons;
+    //public List<GameObject> LevelSectons;
 
     void Start()
     {
@@ -74,12 +74,12 @@ public class ER_Player : MonoBehaviour
             Debug.Log("GAME OVER!");
             mSpeed = 0f;
         }
-        else if(col.gameObject.tag == "Generate Section")
+        /*else if(col.gameObject.tag == "Generate Section")
         {
             Debug.Log("Generate level");
             col.gameObject.SetActive(false);
             GenerateSection(LevelSectons);
-        }
+        }*/
     }
     private void OnTriggerEnter2D(Collider2D col)
     {
@@ -108,9 +108,9 @@ public class ER_Player : MonoBehaviour
             isGrounded = false;
         }
     }
-    public void GenerateSection(List<GameObject> levelSection) 
+    /*public void GenerateSection(List<GameObject> levelSection) 
     {
         int i = Random.Range(0, levelSection.Count);
         Instantiate(levelSection[i], rb.transform.position + new Vector3(10,0,0), Quaternion.identity);
-    }
+    }*/
 }
