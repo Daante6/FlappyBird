@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class ER_State_Jump : ER_Istate
 {
-    private float mSpeed = 6f;
+    private float mSpeed = 5.5f;
     ER_Player player;
-    float jumpSpeed = 10f;
+    float jumpSpeed = 7.5f;
+    float cooldown = 0.2f;
 
     public ER_State_Jump(ER_Player player)
     {
@@ -14,16 +15,24 @@ public class ER_State_Jump : ER_Istate
     }
     public void Enter()
     {
-        Debug.Log("JUMP!");
         player.ChangeVelocity(mSpeed);
 
         Vector2 jumpingForce = new Vector2(0, jumpSpeed);
+        player.ResetVelocityY();
         player.AddForces(jumpingForce);
+
+        player.appearance.ChangeImage(StateEnum.Jump);
     }
 
     public void Execute()
     {
-        
+        if (player.isGrounded && cooldown <= 0f)
+        {
+            player.stateMachine.ChangeState(new ER_State_Run(player));
+        }else
+        {
+            cooldown -= Time.deltaTime;
+        }
     }
 
     public void Exit()
